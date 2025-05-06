@@ -12,6 +12,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { addMovie } from '@/services/movieService';
+import instance from '@/api/instance';
 
 const currentYear = new Date().getFullYear();
 
@@ -52,11 +53,19 @@ const MovieForm = () => {
     }
   });
 
-  const onSubmit = (data: FormValues) => {
+  const onSubmit = async (data: FormValues) => {
     try {
-      addMovie(data);
+      await instance.post("/", {
+        titulo: data.title,
+        genero: data.genre,
+        ano: data.year,
+        minutos: data.runtime,
+        banner: data.banner,
+        sinopse: data.synopsis,
+        nota: data.rating
+      })
+
       toast.success('Movie added successfully!');
-      navigate('/');
     } catch (error) {
       toast.error('Failed to add movie');
       console.error(error);
