@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import HomePage from "./pages/HomePage";
 import AddMoviePage from "./pages/AddMoviePage";
+import MovieDetailPage from "./pages/MovieDetailPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -21,6 +22,7 @@ const App = () => (
           <Route path="/" element={<Layout />}>
             <Route index element={<HomePage />} />
             <Route path="add-movie" element={<AddMoviePage />} />
+            <Route path="movie/:id" element={<MovieDetailPage />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
