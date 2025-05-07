@@ -1,11 +1,11 @@
 
 export interface Movie {
-  id: string;
-  title: string;
-  genre: string;
-  year: number;
-  runtime: number; // in minutes
+  id: number;
+  titulo: string;
+  genero: string;
+  ano: number;
+  minutos: number; // in minutes
   banner: string;
-  synopsis: string;
-  rating: number; // score from 0 to 10
+  sinopse: string;
+  nota: number; // score from 0 to 10
 }

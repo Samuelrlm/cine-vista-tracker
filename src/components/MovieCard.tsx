@@ -14,25 +14,25 @@ const MovieCard = ({ movie }: MovieCardProps) => {
       <div className="aspect-[2/3] w-full relative overflow-hidden">
         <img 
           src={movie.banner} 
-          alt={movie.title} 
+          alt={movie.titulo} 
           className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
         />
         <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-4">
           <div className="flex items-center gap-2">
             <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
-            <span className="text-sm font-medium">{movie.rating.toFixed(1)}</span>
+            <span className="text-sm font-medium">{movie?.nota?.toFixed(1)}</span>
           </div>
         </div>
       </div>
       <CardContent className="p-4">
-        <h3 className="font-bold text-lg line-clamp-1">{movie.title}</h3>
+        <h3 className="font-bold text-lg line-clamp-1">{movie.titulo}</h3>
         <div className="flex items-center justify-between mt-1 text-sm text-muted-foreground">
-          <span>{movie.year}</span>
-          <span>{movie.runtime} min</span>
+          <span>{movie.ano}</span>
+          <span>{movie.minutos} min</span>
         </div>
         <div className="mt-2">
           <span className="inline-block px-2 py-1 text-xs rounded-full bg-cinema-500/20 text-cinema-300">
-            {movie.genre}
+            {movie.genero}
           </span>
         </div>
       </CardContent>

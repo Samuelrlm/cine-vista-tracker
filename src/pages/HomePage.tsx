@@ -1,18 +1,32 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getAllMovies } from '@/services/movieService';
 import MovieList from '@/components/MovieList';
 import EmptyState from '@/components/EmptyState';
 import { Input } from '@/components/ui/input';
 import { Search } from 'lucide-react';
+import instance from '@/api/instance';
 
 const HomePage = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const allMovies = getAllMovies();
+  const [allMovies, setAllMovies] = useState([]);
   
+  useEffect(() => {
+    async function getFilmes(){
+      try {
+        const response = await instance.get("/")
+
+        setAllMovies(response.data)
+      } catch (error) {
+        console.error(error)
+      }
+    }
+    getFilmes()
+  }, []);
+
   const filteredMovies = allMovies.filter(movie => 
-    movie.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
-    movie.genre.toLowerCase().includes(searchTerm.toLowerCase())
+    movie.titulo.toLowerCase().includes(searchTerm.toLowerCase()) || 
+    movie.genero.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
